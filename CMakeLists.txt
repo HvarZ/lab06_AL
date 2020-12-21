@@ -34,6 +34,7 @@ find_package(Boost CONFIG REQUIRED filesystem log log_setup program_options syst
 
 find_package(Threads)
 
+add_subdirectory("third-party/")
 
 add_library(lab06 STATIC
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/hash_researcher.cpp
@@ -54,10 +55,10 @@ target_link_libraries(lab06
         PRIVATE picosha
         )
 
-add_executable(hash_researcher
+add_executable(main
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
         )
-target_link_libraries(hash_researcher
+target_link_libraries(main
         PRIVATE lab06 Boost::program_options
         )
 
