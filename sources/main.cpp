@@ -8,25 +8,28 @@
 #include <boost/log/utility/setup.hpp>
 
 
-void signalHandler(int) {
+void signal_handler(int) {
   std::cout << "Received interrupt signal, aborting" << std::endl;
   exit(0);
 }
 
 void init() {
-  auto sinkFile = boost::log::add_file_log(
+  auto sink_file = boost::log::add_file_log(
       boost::log::keywords::file_name = "research_%5N.log",
       boost::log::keywords::rotation_size = 5 * 1024 * 1024,
       boost::log::keywords::format = "[%TimeStamp%]: %Message%");
-  sinkFile->set_filter(
+  sink_file->set_filter(
       boost::log::trivial::severity >= boost::log::trivial::trace);
-  auto sinkConsole = boost::log::add_console_log(
+  auto sink_console = boost::log::add_console_log(
       std::cout,
       boost::log::keywords::format = "[%TimeStamp%]: %Message%");
-  sinkConsole->set_filter(
+
+  sink_console->set_filter(
       boost::log::trivial::severity >= boost::log::trivial::info);
+
   boost::log::add_common_attributes();
-  signal(SIGINT, signalHandler);
+
+  signal(SIGINT, signal_handler);
 }
 
 
