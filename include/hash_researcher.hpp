@@ -1,4 +1,4 @@
-// Copyright 2020 Your Name <your_email>
+// Copyright 2020 Zakhar Ushakov <hvarzahar@gmail.com>
 
 #ifndef INCLUDE_HASH_RESEARCHER_HPP_
 #define INCLUDE_HASH_RESEARCHER_HPP_
