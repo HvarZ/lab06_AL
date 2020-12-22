@@ -1,7 +1,7 @@
 // Copyright 2020 Your Name <your_email>
 
-#ifndef INCLUDE_HEADER_HPP_
-#define INCLUDE_HEADER_HPP_
+#ifndef INCLUDE_HASH_RESEARCHER_HPP_
+#define INCLUDE_HASH_RESEARCHER_HPP_
 
 #include <mutex>
 #include <string>
@@ -10,7 +10,6 @@
 #include <nlohmann/json.hpp>
 
 class hash_researcher final {
-
  private:
   nlohmann::json data;
   std::mutex mutex_data;
@@ -26,4 +25,4 @@ class hash_researcher final {
 };
 
 
-#endif // INCLUDE_HEADER_HPP_
+#endif // INCLUDE_HASH_RESEARCHER_HPP_

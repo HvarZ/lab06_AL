@@ -26,13 +26,12 @@ void init() {
   sinkConsole->set_filter(
       boost::log::trivial::severity >= boost::log::trivial::info);
   boost::log::add_common_attributes();
-  signal(SIGHUP, signalHandler);
+  signal(SIGINT, signalHandler);
 }
 
 
 
 int main(int argc, char* argv[]) {
-
   size_t count_thread;
 
   if (argc <= 2) {
