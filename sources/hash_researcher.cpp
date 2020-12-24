@@ -69,9 +69,9 @@ inline auto random_string() -> std::string {
       data.push_back(Data(hash_hex, rand_string, timestamp()));
     } else {
       BOOST_LOG_TRIVIAL(trace) << "Thread id: "
-                               << std::this_thread::get_id() << '\n'
+                               << std::this_thread::get_id() << std::endl
                                << "Unsuitable data '" << rand_string
-                               << "' with hash '" << hash_hex << "'\n";
+                               << "' with hash '" << hash_hex << std::endl;
     }
   }
 }
