@@ -18,6 +18,7 @@ class hash_researcher final {
  public:
   explicit hash_researcher(const std::string& _suffix) noexcept;
   void research(size_t count);
+  [[nodiscard]] auto get_data() const noexcept -> nlohmann::json;
 
  private:
   [[noreturn]] void research_function();

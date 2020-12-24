@@ -24,6 +24,9 @@ struct Data {
       : data(_data), hash(_hash), timestamp(_timestamp) {}
 };
 
+auto hash_researcher::get_data() const noexcept -> nlohmann::json {
+  return data;
+}
 
 void to_json(nlohmann::json& j, const Data& _data) {
   j = nlohmann::json {{"timestamp", _data.timestamp},
@@ -31,14 +34,6 @@ void to_json(nlohmann::json& j, const Data& _data) {
             {"data", _data.data}};
 }
 
-
-bool check_suffix(const std::string& hash, const std::string& suffix){
-  if (hash.length() < suffix.length()) {
-    return false;
-  } else {
-    return std::equal(suffix.rbegin(), suffix.rend(), hash.rend());
-  }
-}
 
 hash_researcher::hash_researcher(const std::string& _suffix) noexcept
     : data(nlohmann::json::array()), suffix(_suffix) {}
@@ -49,18 +44,17 @@ auto hash_researcher::timestamp() -> size_t {
         (current_time.time_since_epoch()).count();
 }
 
-inline auto random_string() -> std::string {
+auto random_string() -> std::string {
   std::mt19937 generator(std::random_device{}());
   return std::to_string(generator());
 }
 
 [[noreturn]] void hash_researcher::research_function() {
-  std::string rand_string = random_string();
-
   for (;;) {
+    auto rand_string = random_string();
     std::string hash_hex = picosha2::hash256_hex_string(rand_string);
 
-    if (check_suffix(hash_hex, suffix)) {
+    if (hash_hex.substr(hash_hex.size() - suffix.size()) == suffix) {
       BOOST_LOG_TRIVIAL(info) << "Thread id: "
                               << std::this_thread::get_id() << std::endl
                               << "Found suitable data '" << rand_string
