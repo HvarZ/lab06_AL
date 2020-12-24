@@ -44,7 +44,7 @@ void init() {
 
 
 int main(int argc, char* argv[]) {
-  long count_thread;
+  size_t count_thread;
 
   init();
 
