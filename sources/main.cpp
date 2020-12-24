@@ -2,7 +2,10 @@
 
 #include <hash_researcher.hpp>
 
+#include <csignal>
 #include <thread>
+
+
 #include <boost/log/sinks.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/utility/setup.hpp>
